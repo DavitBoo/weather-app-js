@@ -96,13 +96,20 @@ nav .temp-btn button:hover{
 
 
 /* today's forecast container - first section  */
+.day-forecast{
+    padding: 2rem 4rem;
+}
+
 .day-forecast .general-info{
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 2rem;
+ 
 }
 
 .day-forecast .general-info .main-info{
     align-items: center;
+    flex: 1;
 }
 
 .day-forecast .general-info .main-info .city-text{
@@ -115,6 +122,17 @@ nav .temp-btn button:hover{
 
 .day-forecast .general-info .main-info .temperature-text{
     font-size: 3rem;
+}
+
+.day-forecast .weather-per-hours{
+    overflow-x: scroll;
+    flex: 2;
+    gap: 3rem;
+}
+
+.day-forecast .weather-per-hours > div {
+    gap: 2rem;
+    align-items: center;
 }
 
 
@@ -137,16 +155,19 @@ nav .temp-btn button:hover{
 .day-data .d-flex > div{
     text-align: center;
     flex: 1;
-    color: var(--green-3);
+   
     text-transform: uppercase;
 }
 
-
-/* forecast for next 5 days */
-.next-days{
-
+.day-data .d-flex > div > p:first-child{
+    color: var(--green-3);
 }
 
+.day-data .d-flex > div > p:last-child{
+    color: #fff;
+}
+
+/* forecast for next 5 days */
 .next-days .d-flex > .box{
     flex: 1;
 }
