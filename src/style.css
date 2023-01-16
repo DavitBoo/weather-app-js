@@ -1,0 +1,142 @@
+:root {
+    --aero-blue: #D7FFF1;
+    --green-1: #AAFCB8;
+    --green-2: #8CD790;
+    --green-3: #77AF9C;
+    --green-4: #285943;
+}
+
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+input{
+    border-radius: 4px;
+    border: none;
+    margin: 0;
+    padding: .5rem;
+    font-size: 1rem;
+}
+
+button{
+    margin: 0;
+    border: none;
+    font-size: 1rem;
+
+}
+
+.d-flex{
+    display: flex;
+}
+
+.d-flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* navbar menu */
+nav {
+    background-color: var(--green-4);
+    align-items: center;
+    padding: 1rem 5%;
+}
+
+nav .logo {
+    align-items: center;
+    flex: 1;
+}
+
+nav .logo svg{
+    color: var(--green-1);
+}
+
+nav .logo p{
+    color: var(--green-1);
+}
+
+nav .search {
+    flex: 3;
+}
+
+nav .search > button {
+    margin-left: -6px;
+    border-radius: 0 4px 4px 0;
+    padding: .5rem;
+    cursor: pointer;
+    background-color: var(--green-3);
+    color: #fff;
+}
+
+nav .temp-btn{
+    flex: 3;
+    justify-content: flex-end;
+}
+
+nav .temp-btn button {
+    padding: .5rem 2rem;
+    border-radius: 4px;
+    background-color: var(--aero-blue);
+    cursor: pointer;
+    transition: all .2s;
+}
+
+nav .temp-btn button:hover{
+    background-color: var(--green-1);
+}
+
+
+/* today's forecast container - first section  */
+.day-forecast .general-info{
+    justify-content: space-around;
+    align-items: center;
+}
+
+.day-forecast .general-info .main-info{
+    align-items: center;
+}
+
+.day-forecast .general-info .main-info .city-text{
+    font-size: 2rem;
+}
+
+.day-forecast .general-info .main-info .weather-text{
+    font-size: 1.5rem;
+}
+
+.day-forecast .general-info .main-info .temperature-text{
+    font-size: 3rem;
+}
+
+
+.day-forecast > p {
+    text-align: center;
+}
+
+
+/* today's weather data - 2nd section  */
+
+.day-data {
+    background: var(--green-4);
+    padding: 3rem;
+}
+
+.day-data .d-flex{
+    padding: 3rem;
+}
+
+.day-data .d-flex > div{
+    text-align: center;
+    flex: 1;
+    color: var(--green-3);
+    text-transform: uppercase;
+}
