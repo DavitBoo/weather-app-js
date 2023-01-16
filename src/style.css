@@ -140,3 +140,13 @@ nav .temp-btn button:hover{
     color: var(--green-3);
     text-transform: uppercase;
 }
+
+
+/* forecast for next 5 days */
+.next-days{
+
+}
+
+.next-days .d-flex > .box{
+    flex: 1;
+}
