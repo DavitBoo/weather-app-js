@@ -155,16 +155,16 @@ nav .temp-btn button:hover{
 .day-data .d-flex > div{
     text-align: center;
     flex: 1;
-   
-    text-transform: uppercase;
 }
 
 .day-data .d-flex > div > p:first-child{
     color: var(--green-3);
+    text-transform: uppercase;
 }
 
 .day-data .d-flex > div > p:last-child{
     color: #fff;
+    font-size: 1.6rem;
 }
 
 /* forecast for next 5 days */

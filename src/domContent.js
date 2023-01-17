@@ -1,5 +1,5 @@
 import { getData } from "./getData"
-import { cloudI } from "./weatherIcons"
+import { arrowI, cloudI } from "./weatherIcons"
 
 
 
@@ -13,7 +13,14 @@ const hourlyWeatherContainer = document.querySelector('.weather-per-hours')
 
 const sunriseTime = document.querySelector('.sunriseTime')
 const sunsetTime = document.querySelector('.sunsetTime')
-
+const chanceOfRain = document.querySelector('.chance-of-rain')
+const humidity = document.querySelector('.humidity')
+const wind = document.querySelector('.wind')
+const feelLike = document.querySelector('.feels-like')
+const precipitation = document.querySelector('.precipitation')
+const pressure = document.querySelector('.pressure')
+const visibility = document.querySelector('.visibility')
+const weather = document.querySelector('.weather')
 
 export async function searchCity (valueToSearch) {
     const data = await getData(valueToSearch)
@@ -28,15 +35,22 @@ export async function searchCity (valueToSearch) {
         hourlyWeatherContainer.innerHTML += `
             <div class="each-hour d-flex-col">
                 <div class="time-text">${time.dt_txt.split(' ')[1]}</div>
-                <div class="weather-icon">${cloudI}</div>
+                <div class="weather-icon"><img src="http://openweathermap.org/img/wn/${time.weather[0].icon}@2x.png"></img></div>
                 <div class="temp-at-time">${(time.main.temp -273).toFixed(1)} ºC</div>
             </div>
         `
     });
 
     sunriseTime.innerHTML = getTime(data.sunrise)
-    console.log(sunsetTime)
     sunsetTime.innerHTML = getTime(data.sunset)
+    chanceOfRain.innerHTML = data.list[0].pop * 100 + '%'
+    humidity.innerHTML =  data.list[0].main.humidity + '%'
+    wind.innerHTML = `${arrowI(data.list[0].wind.deg)} ${data.list[0].wind.speed} km/h`
+    feelLike.innerHTML = `${(data.list[0].main.feels_like-273).toFixed(1)} ºC`
+    precipitation.innerHTML = `${data.list[0].rain ? data.list[0].rain['3h'] : (data.list[0].snow ? data.list[0].snow['3h'] : '0') } m<sup>3</sup>`
+    pressure.innerHTML = data.list[0].main.pressure + 'hPa' 
+    visibility.innerHTML = `${data.list[0].visibility > 9999 ? 'max.' : data.list[0].visibility / 1000 + 'km'}  `
+    weather.innerHTML =  `<img src="http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png"></img>`
 }
 
 const getTime = dateTime => {
@@ -44,6 +58,5 @@ const getTime = dateTime => {
     let hour = readable_date.getHours()
     let minutes = readable_date.getMinutes()
     return `${hour}:${minutes <= 9 ? '0' + minutes : minutes}`
-
 }
 
