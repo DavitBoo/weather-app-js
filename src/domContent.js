@@ -1,5 +1,5 @@
 import { getBackground, getData } from "./getData"
-import { arrowI, cloudI } from "./weatherIcons"
+import { arrowI } from "./weatherIcons"
 
 const body = document.querySelector('body')
 
@@ -27,15 +27,20 @@ let tempUnits = "C"
 
 const cel = document.getElementById('cel')
 const fah = document.getElementById('fah')
+let lastSearchedTown
 
-tempUnitsBtn.addEventListener('click', () => {
+tempUnitsBtn.addEventListener('click', async () => {
     if(tempUnits === "C") tempUnits = 'F'
     else tempUnits = 'C'
     cel.classList.toggle('fw600')
     fah.classList.toggle('fw600')
+    searchCity(lastSearchedTown)
 })
 
+
+
 export async function searchCity (valueToSearch) {
+    lastSearchedTown = valueToSearch;
     const data = await getData(valueToSearch)
 
     cityText.innerHTML = data.city

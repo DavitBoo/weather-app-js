@@ -5,6 +5,7 @@ import './style.css';
 const searchBtn = document.getElementById('search-btn')
 const cityInput = document.getElementById('city-inpuy')
 
+searchCity('Sevilla')
 
 const successCallback = async (position) => {
     const location = await getLocation(position.coords.longitude, position.coords.latitude)

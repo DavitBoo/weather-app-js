@@ -104,6 +104,7 @@ nav .temp-btn button:hover{
 /* today's forecast container - first section  */
 .day-forecast{
     padding: 6rem 4rem;
+    position: relative;
 }
 
 .day-forecast .general-info{
@@ -151,9 +152,30 @@ nav .temp-btn button:hover{
 }
 
 
-.day-forecast > p {
-    text-align: center;
+
+/* scroll bar */
+
+.weather-per-hours::-webkit-scrollbar {
+    height: 7px;
 }
+
+/* Track */
+.weather-per-hours::-webkit-scrollbar-track {
+    background: #f1f1f11f; 
+    
+  }
+   
+/* Handle */
+.weather-per-hours::-webkit-scrollbar-thumb {
+    background: var(--green-4); 
+
+  }
+  
+/* Handle on hover */
+.weather-per-hours::-webkit-scrollbar-thumb:hover {
+    background: var(--green-3); 
+    
+  }
 
 
 /* today's weather data - 2nd section  */
@@ -181,3 +203,4 @@ nav .temp-btn button:hover{
     color: #fff;
     font-size: 1.6rem;
 }
+
