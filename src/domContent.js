@@ -2,7 +2,6 @@ import { getData } from "./getData"
 import { arrowI, cloudI } from "./weatherIcons"
 
 
-
 const cityText = document.querySelector('.city-text')
 const weatherText = document.querySelector('.weather-text')
 const temperatureText = document.querySelector('.temperature-text')
@@ -22,6 +21,14 @@ const pressure = document.querySelector('.pressure')
 const visibility = document.querySelector('.visibility')
 const weather = document.querySelector('.weather')
 
+// const tempUnitsBtn = document.getElementById('temp-units-btn')
+// let tempUnits = "C"
+
+// tempUnitsBtn.addEventListener('click', () => {
+//     if(tempUnits === "C") tempUnits = 'F'
+//     else tempUnits = 'C'
+// })
+
 export async function searchCity (valueToSearch) {
     const data = await getData(valueToSearch)
 
@@ -32,6 +39,7 @@ export async function searchCity (valueToSearch) {
     lowTemp.innerHTML = `${(data.list[0].main.temp_min -273).toFixed(1)} ºC`
 
     data.list.forEach((time, i) => {
+        console.log(time.dt_txt)
         hourlyWeatherContainer.innerHTML += `
             <div class="each-hour d-flex-col">
                 <div class="time-text">${time.dt_txt.split(' ')[1]}</div>
@@ -60,3 +68,11 @@ const getTime = dateTime => {
     return `${hour}:${minutes <= 9 ? '0' + minutes : minutes}`
 }
 
+
+// const kelvinToCelsius = t => {
+//     return `${(t - 273,15).toFixed(1)} ºC`
+// }
+
+// const kelvinToFahrenheit = t => {
+//     return `${((t - 273,15) * 9 / 5 + 32).toFixed(1)} ºF`
+// }

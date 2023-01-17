@@ -121,13 +121,14 @@ nav .temp-btn button:hover{
 }
 
 .day-forecast .general-info .main-info .temperature-text{
-    font-size: 3rem;
+    font-size: 3.5rem;
+    margin: 1rem auto;
 }
 
 .day-forecast .weather-per-hours{
     overflow-x: scroll;
     flex: 2;
-    gap: 3rem;
+    gap: 3.5rem;
 }
 
 .day-forecast .weather-per-hours > div {
@@ -165,9 +166,4 @@ nav .temp-btn button:hover{
 .day-data .d-flex > div > p:last-child{
     color: #fff;
     font-size: 1.6rem;
-}
-
-/* forecast for next 5 days */
-.next-days .d-flex > .box{
-    flex: 1;
 }
