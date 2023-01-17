@@ -11,6 +11,8 @@ body{
     padding: 0;
     margin: 0;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-size: cover;
+    transition: all .3s;
 
 }
 
@@ -32,6 +34,10 @@ button{
     border: none;
     font-size: 1rem;
 
+}
+
+.fw600{
+    font-weight: 600;
 }
 
 .d-flex{
@@ -97,19 +103,24 @@ nav .temp-btn button:hover{
 
 /* today's forecast container - first section  */
 .day-forecast{
-    padding: 2rem 4rem;
+    padding: 6rem 4rem;
 }
 
 .day-forecast .general-info{
     justify-content: space-around;
     align-items: center;
     margin-bottom: 2rem;
+    gap: 3rem;
+    
  
 }
 
 .day-forecast .general-info .main-info{
     align-items: center;
     flex: 1;
+    background: #ffffff62;
+    border-radius: 2rem;
+    padding: 1rem 0;
 }
 
 .day-forecast .general-info .main-info .city-text{
@@ -129,6 +140,9 @@ nav .temp-btn button:hover{
     overflow-x: scroll;
     flex: 2;
     gap: 3.5rem;
+    background: #ffffff62;
+    border-radius: 2rem 2rem 0 0;
+    padding: 1rem 0;
 }
 
 .day-forecast .weather-per-hours > div {
