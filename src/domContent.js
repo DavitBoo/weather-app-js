@@ -1,3 +1,4 @@
+import { getDate, getTime, tempWriter } from "./auxFunctions"
 import { getBackground, getData } from "./getData"
 import { arrowI } from "./weatherIcons"
 
@@ -43,11 +44,13 @@ export async function searchCity (valueToSearch) {
     lastSearchedTown = valueToSearch;
     const data = await getData(valueToSearch)
 
+    const currentData = data.list[0]
+
     cityText.innerHTML = data.city
-    weatherText.innerHTML = data.list[0].weather[0].main
-    temperatureText.innerHTML = tempWriter(data.list[0].main.temp)
-    hightTemp.innerHTML = tempWriter(data.list[0].main.temp_max)
-    lowTemp.innerHTML = tempWriter(data.list[0].main.temp_min)
+    weatherText.innerHTML = currentData.weather[0].main
+    temperatureText.innerHTML = tempWriter(currentData.main.temp, tempUnits)
+    hightTemp.innerHTML = tempWriter(currentData.main.temp_max, tempUnits)
+    lowTemp.innerHTML = tempWriter(currentData.main.temp_min, tempUnits)
 
     hourlyWeatherContainer.innerHTML = ''
 
@@ -56,52 +59,25 @@ export async function searchCity (valueToSearch) {
             <div class="each-hour d-flex-col">
                 <div class="time-text">${getDate(time.dt)}</div>
                 <div class="weather-icon"><img src="http://openweathermap.org/img/wn/${time.weather[0].icon}@2x.png"></img></div>
-                <div class="temp-at-time">${tempWriter(time.main.temp)} </div>
+                <div class="temp-at-time">${tempWriter(time.main.temp, tempUnits)} </div>
             </div>
         `
-        console.log(tempWriter(time.main.temp))
     });
 
     sunriseTime.innerHTML = getTime(data.sunrise)
     sunsetTime.innerHTML = getTime(data.sunset)
-    chanceOfRain.innerHTML = data.list[0].pop * 100 + '%'
-    humidity.innerHTML =  data.list[0].main.humidity + '%'
-    wind.innerHTML = `${arrowI(data.list[0].wind.deg)} ${data.list[0].wind.speed} km/h`
-    feelLike.innerHTML = tempWriter(data.list[0].main.feels_like);
-    precipitation.innerHTML = `${data.list[0].rain ? data.list[0].rain['3h'] : (data.list[0].snow ? data.list[0].snow['3h'] : '0') } m<sup>3</sup>`
-    pressure.innerHTML = data.list[0].main.pressure + 'hPa' 
-    visibility.innerHTML = `${data.list[0].visibility > 9999 ? 'max.' : data.list[0].visibility / 1000 + 'km'}  `
-    cloudy.innerHTML =  data.list[0].clouds.all + '%'
+    chanceOfRain.innerHTML = currentData.pop * 100 + '%'
+    humidity.innerHTML =  currentData.main.humidity + '%'
+    wind.innerHTML = `${arrowI(currentData.wind.deg)} ${currentData.wind.speed} km/h`
+    feelLike.innerHTML = tempWriter(currentData.main.feels_like, tempUnits);
+    precipitation.innerHTML = `${currentData.rain ? currentData.rain['3h'] : (currentData.snow ? currentData.snow['3h'] : '0') } m<sup>3</sup>`
+    pressure.innerHTML = currentData.main.pressure + 'hPa' 
+    visibility.innerHTML = `${currentData.visibility > 9999 ? 'max.' : currentData.visibility / 1000 + 'km'}  `
+    cloudy.innerHTML =  currentData.clouds.all + '%'
 
-    const imgUrl = await getBackground(data.list[0].weather[0].main)
-    console.log(imgUrl)
+    const imgUrl = await getBackground(currentData.weather[0].main)
     body.style.backgroundImage = `linear-gradient(0deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)), url(${imgUrl.hits[0].largeImageURL})`
 }
 
-const getTime = dateTime => {
-    let readable_date = new Date(dateTime*1000);
-    let hour = readable_date.getHours()
-    let minutes = readable_date.getMinutes()
-    return `${hour}:${minutes <= 9 ? '0' + minutes : minutes}`
-}
-
-const getDate = date => {
-    let readable_date = new Date(date*1000);
-    let hour = readable_date.getHours()
-    let day = readable_date.getDate()
-    let month = readable_date.getMonth() + 1
-    return `${day}/${month} ${hour}:00`
-}
 
 
-const kelvinToCelsius = t => {
-    return `${(t - 273.15).toFixed(1)} ºC`
-}
-
-const kelvinToFahrenheit = t => {
-    return `${((t - 273.15) * 9 / 5 + 32).toFixed(1)} ºF`
-}
-
-const tempWriter = t => {
-    return `${tempUnits === 'C' ? kelvinToCelsius(t) : kelvinToFahrenheit(t) } `
-}

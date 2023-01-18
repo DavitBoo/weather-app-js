@@ -1,5 +1,6 @@
 import { searchCity } from './domContent';
 import { getLocation } from './getData';
+
 import './style.css';
 
 const searchBtn = document.getElementById('search-btn')
@@ -13,11 +14,11 @@ const successCallback = async (position) => {
 };
 
 const errorCallback = (error) => {
+    console.log(error)
     searchCity(defaultLocation || 'Sevilla')
 };
 
 let defaultLocation = navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-
 
 
 searchBtn.addEventListener('click',  () => {
